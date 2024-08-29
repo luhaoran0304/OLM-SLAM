@@ -1,4 +1,4 @@
-# OTM-SLAM
+# OLM-SLAM
 
 ## Abstract
 
@@ -74,7 +74,7 @@ python datasets/kitti.py <GT_DEPTH_PATH> <ODOMETRY_PATH> --depth
 # Running the Code
 
 ## Pre-training
-We pre-trained OTM-SLAM on the Cityscapes Dataset.
+We pre-trained OLM-SLAM on the Cityscapes Dataset.
 You can either download the resulting weights, where we masked potentially dynamic objects, or pre-train the DepthNet and PoseNet by yourself by running our code.
 **Note** that you have to adjust the `dataset_path` in [`config/config_pretrain.yaml`](config/config_pretrain.yaml).
 ```python
@@ -83,7 +83,7 @@ python main_pretrain.py
 Model weights: https://pan.baidu.com/s/1YkuHCPiUNBUMrroPAqWVAQ?pwd=2l28 key: 2l28 (Please unzip the file after download.)
 
 
-## Adaptation with OTM-SLAM
+## Adaptation with OLM-SLAM
 For adaptation, we used the KITTI Odometry Dataset and the Oxford RobotCar Dataset.
 The experiments in the paper are conducted on the KITTI sequences 09 and 10 as well as on two RobotCar sequences.
 <br>In order to fill the replay buffer with the pre-training data, please run the following script after having adjusted the paths in the file.
