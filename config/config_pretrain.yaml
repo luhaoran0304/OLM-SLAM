@@ -1,0 +1,34 @@
+Dataset:
+  dataset: Cityscapes
+  dataset_path: USER/data/cityscapes
+  scales: [ 0, 1, 2, 3 ] # Provided by dataloader
+  height: 192
+  width: 640
+  frame_ids: [ 0, -1, 1 ]
+
+DepthPosePrediction:
+  train_set: [ train ]
+  val_set: val
+  resnet_depth: 18
+  resnet_pose: 18
+  resnet_pretrained: true
+  scales: [ 0, 1, 2, 3 ]  # Network size
+  learning_rate: 1e-4
+  scheduler_step_size: 15
+  batch_size: 6
+  num_workers: 16
+  num_epochs: 8
+  min_depth: .1
+  max_depth:
+  disparity_smoothness: .001
+  velocity_loss_scaling: .05
+  lifelong_loss_scaling: 100
+  mask_dynamic: false
+  log_path: ./log/cityscapes
+  save_frequency: 5
+  save_val_depth: true
+  save_val_depth_batches: 1
+  multiple_gpus: false
+  gpu_ids:
+  load_weights_folder: 
+  use_wandb: false

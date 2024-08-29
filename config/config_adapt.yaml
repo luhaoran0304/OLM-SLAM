@@ -1,0 +1,63 @@
+Dataset:
+  dataset: Kitti
+#  dataset: RobotCar
+  dataset_path: USER/data/kitti/odometry/dataset
+  frame_ids: [ 0, -1, 1 ]
+  scales: [ 0, 1, 2, 3 ] # Provided by dataloader
+  height: 192
+  width: 640
+
+DepthPosePrediction:
+  train_set: all
+  val_set: 0
+#  train_set: 2015-08-12-15-04-18
+#  val_set: 2015-08-12-15-04-18
+  resnet_depth: 18
+  resnet_pose: 18
+  resnet_pretrained: true
+  scales: [ 0, 1, 2, 3 ]  # Network size
+  learning_rate: 0.0001
+  scheduler_step_size: 15
+  num_workers: 0
+  num_epochs: 20
+  min_depth: .1
+  max_depth:
+  disparity_smoothness: .001
+  velocity_loss_scaling: .05
+  lifelong_loss_scaling: 100
+  mask_dynamic: False
+  save_frequency: -1
+  save_val_depth: false
+  save_val_depth_batches: 0
+  multiple_gpus: false
+  gpu_ids:
+  batch_size: 3
+  log_path: ./log/slam/c_k10
+  load_weights_folder: ./log/cityscapes/models/weights_025
+  use_wandb: False
+
+ReplayBuffer:
+  maximize_diversity: True
+  dynamic_max_buffer_size: 6
+  static_max_buffer_size: 100
+  dynamic_similarity_threshold: 0.95
+  static_similarity_threshold: 0.85
+  similarity_sampling: False
+  dynamic_load_path: ./log/slam/c_k9/replay_buffer/dynamic_replay_buffer
+  static_load_path: ./log/slam/c_k9/replay_buffer/static_replay_buffer
+
+LoopClosureDetection:
+  detection_threshold: .90
+  id_threshold: 250
+  num_matches: 1
+
+Slam:
+  dataset_sequence: 10
+  adaptation: True
+  adaptation_epochs: 5
+  min_distance: .2
+  start_frame: 0  # Start mapping after this frame
+  logging: true
+  do_loop_closures: true
+  keyframe_frequency: 5
+  lc_distance_poses: 150  # min num consec poses between lc checks
